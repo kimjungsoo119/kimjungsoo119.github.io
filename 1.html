@@ -1,7 +1,79 @@
 <!DOCTYPE html>
 <html>
+<head>
+	<meta charset="utf-8">
+	<title>다음 지도 API</title>
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+	<div id="map" style="width:100%;height:100vh;"></div>
+
+	<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=6364d2fc29c7e183296b697c7793d59d"></script>
+	<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		    mapOption = {
+		        center: new kakao.maps.LatLng(33.506657, 126.493947), // 지도의 중심좌표
+		        level: 4, // 지도의 확대 레벨
+		        mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
+		    }; 
+
+		// 지도를 생성한다 
+        var map = new kakao.maps.Map(mapContainer, mapOption); 
+        
+        var 데이터 =[
+            [33.524383, 126.574058, '<div style="padding: 5px">1번째확진자(2.18)대구방문</div>']
+,
+            [33.253805, 126.427477, '<div style="padding: 5px">2번째확진자(2.22)대구방문</div>']
+,
+            [33.555500, 126.776717, '<div style="padding: 5px">3번째확진자(3.2)대구방문</div>']
+,			
+			[33.480123, 126.491904, '<div style="padding: 5px">4번째확진자(3.4)대구방문</div>']
+,
+            [33.247589, 126.564966, '<div style="padding: 5px">5번째확진자(3.24)스페인방문</div>']
+,
+            [33.325669, 126.819678, '<div style="padding: 5px">6번째확진자(3.24)스페인방문</div>']
+,			
+			[33.444107, 126.905920, '<div style="padding: 5px">7번째확진자(3.26)유럽유학</div>']
+,
+            [33.519381, 126.741649, '<div style="padding: 5px">8번째확진자(3.27)미국유학</div>']
+,
+            [33.507251, 126.645781, '<div style="padding: 5px">9번째확진자(3.30)남미여행</div>']
+,			
+			[33.289118, 126.309732, '<div style="padding: 5px">10번째확진자(4.2)유럽유학</div>']
+,
+            [33.330136, 126.212308, '<div style="padding: 5px">11번째확진자(4.3)9번째확진자 가족</div>']
+,
+            [33.481067, 126.481584, '<div style="padding: 5px">12번째확진자(4.5)유럽방문</div>']
+,			
+			[33.537190, 126.640800, '<div style="padding: 5px">13번째확진자(4.12)해외입국자</div>']
+,
+            [33.489564, 126.539120, '<div style="padding: 5px">14번째확진자(5.10)이태원소재 클럽방문</div>']
+,
+            [33.253088, 126.555170, '<div style="padding: 5px">15번째확진자(6.12)미국방문</div>']
+,
+            [33.490040, 126.525215, '<div style="padding: 5px">16번째확진자(6.16)해외유학</div>']
+,
+            [33.508560, 126.493226, '<div style="padding: 5px">17번째확진자(6.19)해외유학</div>']
+,
+            [33.507826, 126.492303, '<div style="padding: 5px">18번째확진자(6.19)해외유학</div>']
+,
+            [33.506570, 126.492506, '<div style="padding: 5px">19번째확진자(6.20)해외유학</div>']			
+]
+        for (var i = 0; i < 데이터. length; i++) {
+
+     //지도에 마커를 생성하고 표시한다.
+     var marker = new kakao.maps.Marker({
+    position: new kakao.maps.LatLng(데이터 [i] [0], 데이터 [i] [1] ), //
+    map: map //마커를 표시할 지도 객체
+    });
+    // 인포윈도우를 생성합니다
+    var infowindow = new kakao.maps.InfoWindow({
+    content : 데이터[i] [2]
+    });
+
+    // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+    infowindow.open(map, marker); 
+        }
+
+</script>
 </body>
 </html>
